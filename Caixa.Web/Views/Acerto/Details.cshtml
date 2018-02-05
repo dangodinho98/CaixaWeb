@@ -1,0 +1,107 @@
+﻿@model Caixa.Web.Models.AcertoViewModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalhes</h2>
+
+<div>
+    <h4></h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Estabelecimento")
+        </dt>    
+
+        <dd>
+            @Html.DisplayFor(model => model.Acerto.Estabelecimento.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Código da Máquina")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Acerto.Maquina.Codigo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Acerto.Maquina.Tema)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Acerto.Maquina.Tema)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Acerto.Entrada)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Acerto.Entrada)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Acerto.Saida)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Acerto.Saida)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Acerto.Subtotal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Acerto.Subtotal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Acerto.Comissao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Acerto.Comissao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Acerto.Quebra)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Acerto.Quebra)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Acerto.Despesa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Acerto.Despesa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Acerto.Total)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Acerto.Total)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Acerto.Data)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Acerto.Data)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Acerto.Id }) |
+    @Html.ActionLink("Voltar", "Index")
+</p>

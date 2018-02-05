@@ -1,0 +1,67 @@
+﻿@model Caixa.Web.Models.MaquinaViewModel
+
+@{
+    ViewBag.Title = "Detalhes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalhes</h2>
+
+<div>
+    <h4></h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Maquina.Codigo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Maquina.Codigo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Maquina.Tema)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Maquina.Tema)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Maquina.Lacre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Maquina.Lacre)
+        </dd>
+
+        <dt>
+           Estabelecimento
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Maquina.Estabelecimento.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Maquina.Ativo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Maquina.Ativo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Maquina.ModUser)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Maquina.ModUser)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Maquina.Id }) |
+    @Html.ActionLink("Voltar", "Index")
+</p>

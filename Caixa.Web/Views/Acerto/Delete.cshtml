@@ -1,0 +1,113 @@
+﻿@model Caixa.Web.Models.Acerto
+
+@{
+    ViewBag.Title = "Excluir lançamento";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2></h2>
+
+<h3>Você tem certeza que deseja excluir?</h3>
+<div>
+    <h4></h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Estabelecimento")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Acerto.Estabelecimento.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Código da Máquina")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Acerto.Maquina.Codigo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Maquina.Tema)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Maquina.Tema)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Entrada)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Entrada)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Saida)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Saida)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Subtotal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Subtotal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Comissao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Comissao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Quebra)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quebra)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Despesa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Despesa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Total)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Total)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Data)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Data)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Excluir" class="btn btn-default" /> |
+            @Html.ActionLink("Voltar", "Index")
+        </div>
+    }
+</div>

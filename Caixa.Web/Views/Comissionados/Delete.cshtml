@@ -1,0 +1,73 @@
+﻿@model Caixa.Web.Models.Comissionado
+
+@{
+    ViewBag.Title = "Excluir cadastro?";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2></h2>
+
+<h3>Você tem certeza que deseja excluir?</h3>
+<div>
+    <h4>Comissionado</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Telefone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Telefone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CPF)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CPF)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Comissao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Comissao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GanhoAcumulado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GanhoAcumulado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Bloqueado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bloqueado)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Excluir" class="btn btn-default" /> |
+            @Html.ActionLink("Voltar", "Index")
+        </div>
+    }
+</div>

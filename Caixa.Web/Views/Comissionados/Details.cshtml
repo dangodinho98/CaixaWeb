@@ -1,0 +1,67 @@
+﻿@model Caixa.Web.Models.Comissionado
+
+@{
+    ViewBag.Title = "Detalhes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2></h2>
+
+<div>
+    <h4>Comissionado</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome):
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Telefone):
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Telefone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CPF):
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CPF)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Comissao):
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Comissao)%
+        </dd>     
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Bloqueado):
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bloqueado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ModUser):
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ModUser)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Voltar", "Index")
+</p>
