@@ -29,6 +29,7 @@ namespace Caixa.Web.Controllers
             acertoVM.Acerto = new Acerto() { Data = DateTime.Now };
             acertoVM.Estabelecimentos = db.Estabelecimento.Where(x => x.Ativo == true).ToList();
             acertoVM.Maquinas = db.Maquina.Where(x => x.Ativo == true).ToList();
+            acertoVM.Comissionados = db.Comissionado.Where(x => x.Bloqueado == true).ToList();
 
             return View(acertoVM);
         }
@@ -80,6 +81,7 @@ namespace Caixa.Web.Controllers
             mvm.Acerto = acerto;
             mvm.Estabelecimentos = db.Estabelecimento.Where(x => x.Ativo == true).ToList();
             mvm.Maquinas = db.Maquina.Where(x => x.Ativo == true).ToList();
+            mvm.Comissionados = db.Comissionado.Where(x => x.Bloqueado == true).ToList();
 
             return View(mvm);
         }
@@ -100,6 +102,7 @@ namespace Caixa.Web.Controllers
             mvm.Acerto = acerto;
             mvm.Estabelecimentos = db.Estabelecimento.Where(x => x.Ativo == true).ToList();
             mvm.Maquinas = db.Maquina.Where(x => x.Ativo == true).ToList();
+            mvm.Comissionados = db.Comissionado.Where(x => x.Bloqueado == true).ToList();
 
             return View(mvm);
         }

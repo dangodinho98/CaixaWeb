@@ -12,5 +12,6 @@ namespace Caixa.Web.Models
         public IList<Maquinas> Maquinas { get; set; }
 
         public IList<Estabelecimentos> Estabelecimentos { get; set; }
+        public IList<Comissionado> Comissionados { get; set; }
     }
 }

@@ -18,7 +18,7 @@
         <dd>
             @Html.DisplayFor(model => model.Acerto.Estabelecimento.Nome)
         </dd>
-
+        <br />
         <dt>
             @Html.DisplayName("Código da Máquina")
         </dt>
@@ -26,7 +26,7 @@
         <dd>
             @Html.DisplayFor(model => model.Acerto.Maquina.Codigo)
         </dd>
-
+        <br />
         <dt>
             @Html.DisplayNameFor(model => model.Acerto.Maquina.Tema)
         </dt>
@@ -34,62 +34,70 @@
         <dd>
             @Html.DisplayFor(model => model.Acerto.Maquina.Tema)
         </dd>
-
+        <br />
+        
         <dt>
             @Html.DisplayNameFor(model => model.Acerto.Entrada)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Acerto.Entrada)
+            R$@Html.DisplayFor(model => model.Acerto.Entrada)
         </dd>
+        <br />
 
         <dt>
             @Html.DisplayNameFor(model => model.Acerto.Saida)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Acerto.Saida)
+            R$@Html.DisplayFor(model => model.Acerto.Saida)
         </dd>
+        <br />
 
         <dt>
             @Html.DisplayNameFor(model => model.Acerto.Subtotal)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Acerto.Subtotal)
+            R$@Html.DisplayFor(model => model.Acerto.Subtotal)
         </dd>
+        <br />
 
         <dt>
             @Html.DisplayNameFor(model => model.Acerto.Comissao)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Acerto.Comissao)
+            @Html.DisplayFor(model => model.Acerto.Comissao)%
         </dd>
+        <br />
 
         <dt>
             @Html.DisplayNameFor(model => model.Acerto.Quebra)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Acerto.Quebra)
+            R$@Html.DisplayFor(model => model.Acerto.Quebra)
         </dd>
+        <br />
 
         <dt>
             @Html.DisplayNameFor(model => model.Acerto.Despesa)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Acerto.Despesa)
+            R$@Html.DisplayFor(model => model.Acerto.Despesa)
         </dd>
+        <br />
 
         <dt>
             @Html.DisplayNameFor(model => model.Acerto.Total)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Acerto.Total)
+            R$@Html.DisplayFor(model => model.Acerto.Total)
         </dd>
+        <br />
 
         <dt>
             @Html.DisplayNameFor(model => model.Acerto.Data)
@@ -102,6 +110,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Editar", "Edit", new { id = Model.Acerto.Id }) |
+    @*@Html.ActionLink("Editar", "Edit", new { id = Model.Acerto.Id }) |*@
     @Html.ActionLink("Voltar", "Index")
 </p>

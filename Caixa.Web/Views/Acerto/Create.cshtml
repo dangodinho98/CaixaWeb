@@ -56,10 +56,17 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Acerto.Comissao, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Acerto.Comissao, new SelectList(Model.Comissionados, "Comissao", "Nome"), new { @class = "form-control" })
+            </div>
+        </div>
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.Acerto.Comissao, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
                 @Html.EditorFor(model => model.Acerto.Comissao, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Acerto.Comissao, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>*@
 
         <div class="form-group">
             @Html.LabelFor(model => model.Acerto.Quebra, htmlAttributes: new { @class = "control-label col-md-2" })
