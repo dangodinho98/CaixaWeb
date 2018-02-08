@@ -44,7 +44,7 @@ namespace Caixa.Web.Controllers
                 if (ModelState.IsValid)
                 {
                     #region Calculos
-                    var comissao = (acerto.Entrada / acerto.Comissao);
+                    var comissao = (acerto.Entrada * acerto.Comissao) / 100;
                     acerto.Subtotal = acerto.Entrada - (acerto.Despesa + acerto.Quebra + acerto.Saida);
                     acerto.Total = acerto.Entrada - (acerto.Despesa + acerto.Quebra + acerto.Saida + comissao);
                     #endregion
