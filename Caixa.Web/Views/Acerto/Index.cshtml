@@ -1,66 +1,78 @@
 ﻿@model IEnumerable<Caixa.Web.Models.Acerto>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Consultar Acertos";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>Index</h2>
+@{
+    int cont = 0;
+    foreach (var item in Model) {cont++; }
+}
+<h2>Consultar Acertos</h2>
 
 <p>
     @Html.ActionLink("Realizar lançamento", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Data)
-        </th>
-        <th>
-            @Html.DisplayName("Estabelecimento")
-        </th>
-        <th>
-            @Html.DisplayName("Código da Máquina")
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Entrada)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Saida)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Total)
-        </th>
-        <th></th>
-    </tr>
+<table class="table" id="myTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Data)
+            </th>
+            <th>
+                @Html.DisplayName("Estabelecimento")
+            </th>
+            <th>
+                @Html.DisplayName("Código da Máquina")
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Entrada)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Saida)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Total)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
 
-    @foreach (var item in Model)
-    {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Data)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Estabelecimento.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Maquina.Codigo)
+                </td>
+                <td>
+                    R$@Html.DisplayFor(modelItem => item.Entrada)
+                </td>
+                <td>
+                    R$@Html.DisplayFor(modelItem => item.Saida)
+                </td>
+                <td>
+                    R$@Html.DisplayFor(modelItem => item.Total)
+                </td>
+
+                <td>
+                    @*@Html.ActionLink("Editar", "Edit", new { id = item.Id }) |*@
+                    @Html.ActionLink("Detalhes", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Excluir", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Data)
+                <b>@String.Format("Quantidade de Registro(s): {0}", cont)</b>
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Estabelecimento.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Maquina.Codigo)
-            </td>
-            <td>
-                R$@Html.DisplayFor(modelItem => item.Entrada)
-            </td>
-            <td>
-                R$@Html.DisplayFor(modelItem => item.Saida)
-            </td>
-            <td>
-                R$@Html.DisplayFor(modelItem => item.Total)
-            </td>
-
-            <td>
-                @*@Html.ActionLink("Editar", "Edit", new { id = item.Id }) |*@
-                @Html.ActionLink("Detalhes", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Excluir", "Delete", new { id = item.Id })
-            </td>
-        </tr>
-    }
-
+        <tr />
+    </tbody>
 </table>
+

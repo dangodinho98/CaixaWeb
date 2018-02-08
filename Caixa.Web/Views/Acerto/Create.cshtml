@@ -90,11 +90,39 @@
                 <input type="submit" value="Salvar" class="btn btn-default" />
             </div>
         </div>
+
+
+
+        <h4>Totais</h4>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Acerto.Subtotal, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Acerto.Subtotal, new { htmlAttributes = new { disabled = "disabled", @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Acerto.Subtotal, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Acerto.Comissao, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Acerto.Comissao, new { htmlAttributes = new { disabled = "disabled", @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Acerto.Comissao, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Acerto.Total, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Acerto.Total, new { htmlAttributes = new { disabled = "disabled", @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Acerto.Total, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Voltar", "Index")
 </div>
 
 @section Scripts {
