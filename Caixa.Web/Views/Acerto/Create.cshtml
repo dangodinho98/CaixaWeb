@@ -26,14 +26,14 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Acerto.IdEstabelecimento, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.Acerto.IdEstabelecimento, new SelectList(Model.Estabelecimentos, "Id", "Nome", Model.Acerto.IdEstabelecimento), new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.Acerto.IdEstabelecimento, new SelectList(Model.Estabelecimentos, "Id", "Nome", Model.Acerto.IdEstabelecimento), "Selecione um estabelecimento", new { @class = "form-control" })
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.Acerto.IdMaquina, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.Acerto.IdMaquina, new SelectList(Model.Maquinas, "Id", "Codigo", Model.Acerto.IdMaquina), new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.Acerto.IdMaquina, new SelectList(Model.Maquinas, "Id", "Codigo", Model.Acerto.IdMaquina),"Selecione uma máquina", new { @class = "form-control" })
             </div>
         </div>
 
@@ -56,7 +56,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Acerto.Comissao, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.Acerto.Comissao, new SelectList(Model.Comissionados, "Comissao", "Nome"), new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.Acerto.Comissao, new SelectList(Model.Comissionados, "Comissao", "Nome"), "Selecione um comissionado", new { @class = "form-control" })
             </div>
         </div>
 

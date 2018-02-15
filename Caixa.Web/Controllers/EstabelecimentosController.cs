@@ -25,7 +25,7 @@ namespace Caixa.Web.Controllers
                                                           || s.Endereco.ToUpper().Contains(searchString.ToUpper())
                                                           || s.Telefone.ToUpper().Contains(searchString.ToUpper())
                                                           || s.Regiao.ToUpper().Contains(searchString.ToUpper())
-/*                                                          || s.Observacao.ToUpper().Contains(searchString.ToUpper())*/).ToList();
+                                                            /* || s.Observacao.ToUpper().Contains(searchString.ToUpper())*/).ToList();
             }
 
             return View(estabelecimento);
@@ -144,5 +144,13 @@ namespace Caixa.Web.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public ActionResult RelatorioEstabelecimentos()
+        {
+            var estabelecimentos = db.Estabelecimento.ToList();
+            return View(estabelecimentos);
+        }
+
+
     }
 }

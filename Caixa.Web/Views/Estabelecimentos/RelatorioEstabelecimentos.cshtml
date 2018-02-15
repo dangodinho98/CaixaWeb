@@ -1,0 +1,14 @@
+﻿@model IEnumerable<Caixa.Web.Models.Estabelecimentos>
+
+@{
+    ViewBag.Title = "Relatorio de Estabelecimentos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Relatorio Estabelecimentos</h2>
+
+    @foreach (var item in Model)
+    {
+        <h4>@Html.ActionLink(item.Nome, "Index", "Home")</h4>
+    }
+

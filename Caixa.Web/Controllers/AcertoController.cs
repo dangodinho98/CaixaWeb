@@ -15,10 +15,10 @@ namespace Caixa.Web.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Maquinas
+        // GET: Acerto
         public ActionResult Index()
         {
-            return View(db.Acerto.Include("Estabelecimento").Include("Maquina").ToList().OrderByDescending(x=>x.Data));
+            return View(db.Acerto.Include("Estabelecimento").Include("Maquina").ToList().OrderByDescending(x=>x.Id));
         }
 
         // GET: Acerto/Create
@@ -26,7 +26,7 @@ namespace Caixa.Web.Controllers
         {
             var acertoVM = new AcertoViewModel();
 
-            acertoVM.Acerto = new Acerto() { Data = DateTime.Now };
+            acertoVM.Acerto = new Acerto() { Data = DateTime.Now.Date };
             acertoVM.Estabelecimentos = db.Estabelecimento.Where(x => x.Ativo == true).ToList();
             acertoVM.Maquinas = db.Maquina.Where(x => x.Ativo == true).ToList();
             acertoVM.Comissionados = db.Comissionado.Where(x => x.Bloqueado == false).ToList();
@@ -46,6 +46,10 @@ namespace Caixa.Web.Controllers
                     #region Calculos
                     var comissao = (acerto.Entrada * acerto.Comissao) / 100;
                     acerto.Subtotal = acerto.Entrada - (acerto.Despesa + acerto.Quebra + acerto.Saida);
+
+                    if (comissao == null)
+                        comissao = 0;
+
                     acerto.Total = acerto.Entrada - (acerto.Despesa + acerto.Quebra + acerto.Saida + comissao);
                     #endregion
 

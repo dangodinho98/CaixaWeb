@@ -21,6 +21,9 @@ namespace Caixa.Web.Models
         public float? Quebra { get; set; }
         public float? Despesa { get; set; }
         public float? Total { get; set; }
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime Data { get; set; }
 
         [Display(Name = "Máquina")]
