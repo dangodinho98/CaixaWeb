@@ -8,10 +8,10 @@
 <h2>Lançamento de Acerto</h2>
 
 @*Teste*@
-@using (Html.BeginForm("Create", "Acerto", FormMethod.Post)) 
+@using (Html.BeginForm("Create", "Acerto", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4></h4>
         <hr />
@@ -27,13 +27,15 @@
             @Html.LabelFor(model => model.Acerto.IdEstabelecimento, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownListFor(model => model.Acerto.IdEstabelecimento, new SelectList(Model.Estabelecimentos, "Id", "Nome", Model.Acerto.IdEstabelecimento), "Selecione um estabelecimento", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Acerto.IdEstabelecimento, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.Acerto.IdMaquina, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.Acerto.IdMaquina, new SelectList(Model.Maquinas, "Id", "Codigo", Model.Acerto.IdMaquina),"Selecione uma máquina", new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.Acerto.IdMaquina, new SelectList(Model.Maquinas, "Id", "Codigo", Model.Acerto.IdMaquina), "Selecione uma máquina", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Acerto.IdMaquina, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -57,17 +59,18 @@
             @Html.LabelFor(model => model.Acerto.Comissao, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownListFor(model => model.Acerto.Comissao, new SelectList(Model.Comissionados, "Comissao", "Nome"), "Selecione um comissionado", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Acerto.Comissao, "", new { @class = "text-danger" })
             </div>
         </div>
 
 
         @*<div class="form-group">
-            @Html.LabelFor(model => model.Acerto.Comissao, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Acerto.Comissao, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Acerto.Comissao, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
+                @Html.LabelFor(model => model.Acerto.Comissao, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Acerto.Comissao, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Acerto.Comissao, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
 
         <div class="form-group">
             @Html.LabelFor(model => model.Acerto.Quebra, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -90,8 +93,6 @@
                 <input type="submit" value="Salvar" class="btn btn-default" />
             </div>
         </div>
-
-
 
         <h4>Totais</h4>
         <div class="form-group">

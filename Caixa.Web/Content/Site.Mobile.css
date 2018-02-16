@@ -27,3 +27,9 @@ input[type="password"].input-validation-error {
 .validation-summary-valid {
     display: none;
 }
+.field-validation-error{
+    color:red;
+}
+.input-validation-error{
+    border:2px;
+}

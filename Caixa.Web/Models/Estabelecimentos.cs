@@ -13,6 +13,7 @@ namespace Caixa.Web.Models
 
         [MaxLength(255)]
         [Index(IsUnique = true)]
+        [Required]
         [Display(Name = "Nome do Estabelecimento")]
         public string Nome { get; set; }
 
