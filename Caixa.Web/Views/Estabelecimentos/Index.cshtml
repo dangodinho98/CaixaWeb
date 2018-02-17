@@ -10,63 +10,72 @@
 <p>
     @Html.ActionLink("Cadastrar novo", "Create")
 </p>
-@using (Html.BeginForm("Index", "Estabelecimentos", FormMethod.Get))
-{
-    <p>
-        Presquisar: @Html.TextBox("SearchString")
-        <input type="submit" value="Busca" />
-    </p>
-}
 
-<table class="table">
-    <tr>
-        <th>
-            @*@Html.DisplayNameFor(model => model.Nome)*@Estabelecimento
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Endereco)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Telefone)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Regiao)
-        </th>
-        @*<th>
-            @Html.DisplayNameFor(model => model.Observacao)
-        </th>*@
-        <th>
-            @Html.DisplayNameFor(model => model.Ativo)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nome)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Endereco)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Telefone)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Regiao)
-        </td>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.Observacao)
-        </td>*@
-        <td>
-            @Html.DisplayFor(modelItem => item.Ativo)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Detalhes", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Excluir", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
-
+<table id="estabelecimentos" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>
+                @*@Html.DisplayNameFor(model => model.Nome)*@Estabelecimento
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Endereco)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Telefone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Regiao)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.Observacao)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Ativo)
+            </th>
+            <th></th>
+        </tr>
+        </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Endereco)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Telefone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Regiao)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.Observacao)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ativo)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Detalhes", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Excluir", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+        </tbody>
 </table>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            //$("#estabelecimentos").DataTable();
+            $('#estabelecimentos').DataTable({
+                "language": {
+                    "url": "https://cdn.datatables.net/plug-ins/1.10.12/i18n/Portuguese-Brasil.json"
+                }
+            });
+        });
+    </script>
+}

@@ -19,15 +19,7 @@ namespace Caixa.Web.Controllers
         public ActionResult Index(string searchString)
         {
             var estabelecimento = db.Estabelecimento.ToList();
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                estabelecimento = estabelecimento.Where(s => s.Nome.ToUpper().Contains(searchString.ToUpper())
-                                                          || s.Endereco.ToUpper().Contains(searchString.ToUpper())
-                                                          || s.Telefone.ToUpper().Contains(searchString.ToUpper())
-                                                          || s.Regiao.ToUpper().Contains(searchString.ToUpper())
-                                                            /* || s.Observacao.ToUpper().Contains(searchString.ToUpper())*/).ToList();
-            }
-
+           
             return View(estabelecimento);
         }
 

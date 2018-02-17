@@ -4,18 +4,14 @@
     ViewBag.Title = "Consultar Acertos";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@{
-    int cont = 0;
-    foreach (var item in Model) {cont++; }
-}
 
-<link href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" rel="stylesheet">
 <h2>Consultar Acertos</h2>
 
 <p>
     @Html.ActionLink("Realizar lançamento", "Create")
 </p>
-<table class="table" id="minhaTabela">
+
+<table id="acertos" class="table table-bordered table-hover">
     <thead>
         <tr>
             <th>
@@ -42,7 +38,6 @@
     <tbody>
         @foreach (var item in Model)
         {
-
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.Data)
@@ -71,24 +66,18 @@
             </tr>
         }
     </tbody>
-    <tr>
-        <td>
-            <b>@String.Format("Quantidade de Registro(s): {0}", cont)</b>
-        </td>
-    <tr />
 </table>
-<script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
-<script src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
-<script>
-  $(document).ready(function(){
-      $('#minhaTabela').DataTable({
-          "language": {
-                "lengthMenu": "Mostrando _MENU_ registros por página",
-                "zeroRecords": "Nada encontrado",
-                "info": "Mostrando página _PAGE_ de _PAGES_",
-                "infoEmpty": "Nenhum registro disponível",
-                "infoFiltered": "(filtrado de _MAX_ registros no total)"
-            }
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('#acertos').DataTable({
+                "language": {
+                    "url": "https://cdn.datatables.net/plug-ins/1.10.12/i18n/Portuguese-Brasil.json"
+                }
+            });
         });
-  });
-</script>
+    </script>
+}
+
+
