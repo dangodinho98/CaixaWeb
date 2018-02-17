@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Caixa.Web.Models.Security>
+
+@{
+    ViewBag.Title = "Nível de Segurança";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Nível de Segurança</h2>
+
+<p>
+    @Html.ActionLink("Definir segurança", "Create")
+</p>
+<table id="security" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Level)
+            </th>
+            <th></th>
+        </tr>
+        </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Level)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Excluir", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('#security').DataTable({
+                "language": {
+                    "url": "https://cdn.datatables.net/plug-ins/1.10.12/i18n/Portuguese-Brasil.json"
+                }
+            });
+        });
+    </script>
+}

@@ -8,6 +8,7 @@ namespace Caixa.Web.Models
     public class IndexViewModel
     {
         public bool HasPassword { get; set; }
+        public bool HasSecurityLevel { get; set; }
         public IList<UserLoginInfo> Logins { get; set; }
         public string PhoneNumber { get; set; }
         public bool TwoFactor { get; set; }

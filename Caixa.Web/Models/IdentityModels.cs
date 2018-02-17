@@ -24,6 +24,7 @@ namespace Caixa.Web.Models
         public DbSet<Maquinas> Maquina { get; set; }
         public DbSet<Acerto> Acerto { get; set; }
         public DbSet<Comissionado> Comissionado { get; set; }
+        public DbSet<Security> Security { get; set; }
         public ApplicationDbContext()
             : base("CaixaMVC", throwIfV1Schema: false)
         {

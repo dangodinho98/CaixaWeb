@@ -15,7 +15,7 @@ namespace Caixa.Web.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-
+        private ApplicationDbContext db = new ApplicationDbContext();
         public ManageController()
         {
         }
@@ -67,6 +67,7 @@ namespace Caixa.Web.Controllers
             var model = new IndexViewModel
             {
                 HasPassword = HasPassword(),
+                HasSecurityLevel = HasSecurityLevel(),
                 PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
                 Logins = await UserManager.GetLoginsAsync(userId),
@@ -360,6 +361,20 @@ namespace Caixa.Web.Controllers
             {
                 return user.PasswordHash != null;
             }
+            return false;
+        }
+
+        private bool HasSecurityLevel()
+        {
+            var username = User.Identity.GetUserName();
+            var accountSecurity = db.Security.FirstOrDefault(a => a.UserName == username);
+
+            if (accountSecurity == null)
+                return false;
+
+            if (accountSecurity.Level == 5)
+                    return true;
+
             return false;
         }
 

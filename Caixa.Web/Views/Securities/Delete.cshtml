@@ -1,0 +1,41 @@
+﻿@model Caixa.Web.Models.Security
+
+@{
+    ViewBag.Title = "Excluir cadastro";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Excluir</h2>
+
+<h3>Você tem certeza que deseja excluir?</h3>
+<div>
+    <h4></h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Level)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Level)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Deletar" class="btn btn-default" /> |
+            @Html.ActionLink("Voltar", "Index")
+        </div>
+    }
+</div>

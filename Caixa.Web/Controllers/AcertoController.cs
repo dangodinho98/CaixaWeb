@@ -18,20 +18,30 @@ namespace Caixa.Web.Controllers
         // GET: Acerto
         public ActionResult Index()
         {
-            return View(db.Acerto.Include("Estabelecimento").Include("Maquina").ToList().OrderByDescending(x=>x.Id));
+            return View(db.Acerto.Include("Estabelecimento").Include("Maquina").ToList().OrderByDescending(x => x.Id));
         }
 
         // GET: Acerto/Create
         public ActionResult Create()
         {
-            var acertoVM = new AcertoViewModel();
+            var username = User.Identity.GetUserName();
+            var accountSecurity = db.Security.FirstOrDefault(a => a.UserName == username);
 
-            acertoVM.Acerto = new Acerto() { Data = DateTime.Now.Date };
-            acertoVM.Estabelecimentos = db.Estabelecimento.Where(x => x.Ativo == true).ToList();
-            acertoVM.Maquinas = db.Maquina.Where(x => x.Ativo == true).ToList();
-            acertoVM.Comissionados = db.Comissionado.Where(x => x.Bloqueado == false).ToList();
+            if (accountSecurity != null && accountSecurity.Level == 5)
+            {
+                var acertoVM = new AcertoViewModel();
 
-            return View(acertoVM);
+                acertoVM.Acerto = new Acerto() { Data = DateTime.Now.Date };
+                acertoVM.Estabelecimentos = db.Estabelecimento.Where(x => x.Ativo == true).ToList();
+                acertoVM.Maquinas = db.Maquina.Where(x => x.Ativo == true).ToList();
+                acertoVM.Comissionados = db.Comissionado.Where(x => x.Bloqueado == false).ToList();
+
+                return View(acertoVM);
+            }
+            else
+            {
+                return HttpNotFound();
+            }
         }
 
         // POST: Acerto/Create
@@ -78,6 +88,7 @@ namespace Caixa.Web.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Acerto acerto = db.Acerto.Find(id);
+
             if (acerto == null)
                 return HttpNotFound();
 
