@@ -9,6 +9,6 @@
 
     @foreach (var item in Model)
     {
-        <h4>@Html.ActionLink(item.Nome, "Index", "Home")</h4>
+        <h4>@Html.ActionLink(item.Nome, "Create", "Acerto", new { idEstabelecimento = item.Id },null)</h4>
     }
 

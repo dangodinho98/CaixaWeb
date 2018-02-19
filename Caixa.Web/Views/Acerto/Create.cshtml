@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "Lançamento de Acerto";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var viewBagVariavel = ViewBag.DIAnterior;
 }
 
 <h2>Lançamento de Acerto</h2>
@@ -25,7 +26,9 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Acerto.IdEstabelecimento, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.Acerto.IdEstabelecimento, new SelectList(Model.Estabelecimentos, "Id", "Nome", Model.Acerto.IdEstabelecimento), "Selecione um estabelecimento", new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.Acerto.IdEstabelecimento, new SelectList(Model.Estabelecimentos, "Id", "Nome", Model.Acerto.IdEstabelecimento), new { disabled = "disabled", @class = "form-control" })
+
+
                 @Html.ValidationMessageFor(model => model.Acerto.IdEstabelecimento, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -41,7 +44,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Acerto.Entrada, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Acerto.Entrada, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Acerto.Entrada, new { htmlAttributes = new { @class = "form-control" }, @Value = viewBagVariavel })
                 @Html.ValidationMessageFor(model => model.Acerto.Entrada, "", new { @class = "text-danger" })
             </div>
         </div>

@@ -11,6 +11,7 @@ using System.Web.Mvc;
 
 namespace Caixa.Web.Controllers
 {
+    [Authorize]
     public class AcertoController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -22,19 +23,23 @@ namespace Caixa.Web.Controllers
         }
 
         // GET: Acerto/Create
-        public ActionResult Create()
+        public ActionResult Create(int? idEstabelecimento)
         {
             var username = User.Identity.GetUserName();
             var accountSecurity = db.Security.FirstOrDefault(a => a.UserName == username);
+            var diAnterior = 10;
 
             if (accountSecurity != null && accountSecurity.Level == 5)
             {
                 var acertoVM = new AcertoViewModel();
 
                 acertoVM.Acerto = new Acerto() { Data = DateTime.Now.Date };
-                acertoVM.Estabelecimentos = db.Estabelecimento.Where(x => x.Ativo == true).ToList();
-                acertoVM.Maquinas = db.Maquina.Where(x => x.Ativo == true).ToList();
+                acertoVM.Estabelecimentos = db.Estabelecimento.Where(x => x.Id == idEstabelecimento).ToList();
+                acertoVM.Maquinas = db.Maquina.Where(x => x.Ativo == true && x.IdEstabelecimento == idEstabelecimento).ToList();
                 acertoVM.Comissionados = db.Comissionado.Where(x => x.Bloqueado == false).ToList();
+
+                ViewBag.DIAnterior = diAnterior;
+
 
                 return View(acertoVM);
             }
