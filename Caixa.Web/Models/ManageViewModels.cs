@@ -9,6 +9,7 @@ namespace Caixa.Web.Models
     {
         public bool HasPassword { get; set; }
         public bool HasSecurityLevel { get; set; }
+        public bool AlteraRegiao { get; set; }
         public IList<UserLoginInfo> Logins { get; set; }
         public string PhoneNumber { get; set; }
         public bool TwoFactor { get; set; }

@@ -25,6 +25,8 @@ namespace Caixa.Web.Models
         public DbSet<Acerto> Acerto { get; set; }
         public DbSet<Comissionado> Comissionado { get; set; }
         public DbSet<Security> Security { get; set; }
+        public DbSet<Regioes> Regioes { get; set; }
+
         public ApplicationDbContext()
             : base("CaixaMVC", throwIfV1Schema: false)
         {

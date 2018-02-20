@@ -195,6 +195,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MaquinasController.cs" />
+    <Compile Include="Controllers\RegioesController.cs" />
     <Compile Include="Controllers\SecuritiesController.cs" />
     <Compile Include="Controllers\ViewSwitcherController.cs" />
     <Compile Include="DTOs\AcertoDTO.cs" />
@@ -266,6 +267,18 @@
     <Compile Include="Migrations\201802171802317_securitySQL.Designer.cs">
       <DependentUpon>201802171802317_securitySQL.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201802201513403_regioes.cs" />
+    <Compile Include="Migrations\201802201513403_regioes.Designer.cs">
+      <DependentUpon>201802201513403_regioes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802201549288_regioesFK.cs" />
+    <Compile Include="Migrations\201802201549288_regioesFK.Designer.cs">
+      <DependentUpon>201802201549288_regioesFK.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802201600519_FKRegioes.cs" />
+    <Compile Include="Migrations\201802201600519_FKRegioes.Designer.cs">
+      <DependentUpon>201802201600519_FKRegioes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Acerto.cs" />
@@ -276,6 +289,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Maquinas.cs" />
     <Compile Include="Models\MaquinaViewModel.cs" />
+    <Compile Include="Models\Regioes.cs" />
     <Compile Include="Models\Security.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -555,6 +569,11 @@
     <Content Include="Views\Securities\Delete.cshtml" />
     <Content Include="Views\Securities\Edit.cshtml" />
     <Content Include="Views\Securities\Index.cshtml" />
+    <Content Include="Views\Regioes\Create.cshtml" />
+    <Content Include="Views\Regioes\Delete.cshtml" />
+    <Content Include="Views\Regioes\Details.cshtml" />
+    <Content Include="Views\Regioes\Edit.cshtml" />
+    <Content Include="Views\Regioes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -615,6 +634,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201802171802317_securitySQL.resx">
       <DependentUpon>201802171802317_securitySQL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802201513403_regioes.resx">
+      <DependentUpon>201802201513403_regioes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802201549288_regioesFK.resx">
+      <DependentUpon>201802201549288_regioesFK.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802201600519_FKRegioes.resx">
+      <DependentUpon>201802201600519_FKRegioes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

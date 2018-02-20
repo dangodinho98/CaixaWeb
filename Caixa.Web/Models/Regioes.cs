@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNet.Identity;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -8,15 +7,19 @@ using System.Web;
 
 namespace Caixa.Web.Models
 {
-    [Table("Security")]
-    public class Security
+    [Table("Regioes")]
+    public class Regioes
     {
         public int Id { get; set; }
+
+        [MaxLength(255)]
+        [Required]
+        [Display(Name = "Região")]
+        public string Regiao { get; set; }
 
         [Display(Name = "Usuário")]
         public string UserName { get; set; }
 
-        [Range(1, 5, ErrorMessage = "Defina um nível de segurança entre 1 e 5.")]
-        public short? Level { get; set; }
+        public ICollection<Estabelecimentos> Estabelecimentos { get; set; }
     }
 }
