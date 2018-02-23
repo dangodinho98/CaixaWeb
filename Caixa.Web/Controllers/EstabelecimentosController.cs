@@ -16,10 +16,9 @@ namespace Caixa.Web.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Estabelecimentos
-        public ActionResult Index(string searchString)
+        public ActionResult Index()
         {
-            var estabelecimento = db.Estabelecimento.ToList();
-           
+            var estabelecimento = db.Estabelecimento.Include("Regiao").ToList().OrderBy(a=> a.Nome);
             return View(estabelecimento);
         }
 
@@ -41,15 +40,18 @@ namespace Caixa.Web.Controllers
         // GET: Estabelecimentos/Create
         public ActionResult Create()
         {
-            return View();
+            var estabelecimentoVM = new EstabelecimentosViewModel();
+            var userName = User.Identity.GetUserName();
+
+            estabelecimentoVM.Estabelecimento = new Estabelecimentos() { Ativo = true, ModUser = userName };
+            estabelecimentoVM.Regioes = db.Regioes.Where(x => x.UserName == userName).ToList();
+
+            return View(estabelecimentoVM);
         }
 
-        // POST: Estabelecimentos/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Nome,Endereco,Telefone,Regiao,Observacao,Ativo")] Estabelecimentos estabelecimentos)
+        public ActionResult Create(Estabelecimentos estabelecimentos)
         {
             try
             {
@@ -76,30 +78,33 @@ namespace Caixa.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Estabelecimentos estabelecimentos = db.Estabelecimento.Find(id);
-            if (estabelecimentos == null)
+
+            var estabelecimentoVM = new EstabelecimentosViewModel();
+            var userName = User.Identity.GetUserName();
+
+            estabelecimentoVM.Estabelecimento = db.Estabelecimento.Find(id);
+            estabelecimentoVM.Regioes = db.Regioes.Where(x => x.UserName == userName).ToList();
+
+            if (estabelecimentoVM == null)
             {
                 return HttpNotFound();
             }
-            return View(estabelecimentos);
+            return View(estabelecimentoVM);
         }
 
-        // POST: Estabelecimentos/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Nome,Endereco,Telefone,Regiao,Observacao,Ativo")] Estabelecimentos estabelecimentos)
+        public ActionResult Edit(EstabelecimentosViewModel estabelecimentosVM)
         {
             if (ModelState.IsValid)
             {
-                estabelecimentos.ModUser = User.Identity.GetUserName();
+                estabelecimentosVM.Estabelecimento.ModUser = User.Identity.GetUserName();
 
-                db.Entry(estabelecimentos).State = EntityState.Modified;
+                db.Entry(estabelecimentosVM.Estabelecimento).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(estabelecimentos);
+            return View(estabelecimentosVM);
         }
 
         // GET: Estabelecimentos/Delete/5

@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Caixa.Web.Models;
+using Microsoft.AspNet.Identity;
 
 namespace Caixa.Web.Controllers
 {
@@ -38,18 +39,32 @@ namespace Caixa.Web.Controllers
         // GET: Regioes/Create
         public ActionResult Create()
         {
-            return View();
+            var username = User.Identity.GetUserName();
+            var accountSecurity = db.Security.FirstOrDefault(a => a.UserName == username);
+
+            if (accountSecurity != null && accountSecurity.Level == 5)
+            {
+                //var local = db.Estabelecimento.Where(x => x.Ativo == true).ToList();
+                var regiaoVM = new Regioes() { UserName = username };
+
+                return View(regiaoVM);
+            }
+            else
+            {
+                return HttpNotFound();
+            }
         }
 
-        // POST: Regioes/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Regiao,UserName")] Regioes regioes)
+        public ActionResult Create(Regioes regioes)
         {
             if (ModelState.IsValid)
             {
+                //Trata estabelecimentos
+                //var estabelecimentoDB = db.Estabelecimento.Find(regioes.IdEstabelecimento);
+                //regioes.Estabelecimentos = estabelecimentoDB;
+
                 db.Regioes.Add(regioes);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -73,12 +88,9 @@ namespace Caixa.Web.Controllers
             return View(regioes);
         }
 
-        // POST: Regioes/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Regiao,UserName")] Regioes regioes)
+        public ActionResult Edit(Regioes regioes)
         {
             if (ModelState.IsValid)
             {

@@ -279,6 +279,14 @@
     <Compile Include="Migrations\201802201600519_FKRegioes.Designer.cs">
       <DependentUpon>201802201600519_FKRegioes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201802211544531_es.cs" />
+    <Compile Include="Migrations\201802211544531_es.Designer.cs">
+      <DependentUpon>201802211544531_es.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802231244151_AddRegiaoIdToEstabelecimentos.cs" />
+    <Compile Include="Migrations\201802231244151_AddRegiaoIdToEstabelecimentos.Designer.cs">
+      <DependentUpon>201802231244151_AddRegiaoIdToEstabelecimentos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Acerto.cs" />
@@ -290,6 +298,8 @@
     <Compile Include="Models\Maquinas.cs" />
     <Compile Include="Models\MaquinaViewModel.cs" />
     <Compile Include="Models\Regioes.cs" />
+    <Compile Include="Models\EstabelecimentosViewModel.cs" />
+    <Compile Include="Models\RegioesViewModel.cs" />
     <Compile Include="Models\Security.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -507,7 +517,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -571,9 +583,9 @@
     <Content Include="Views\Securities\Index.cshtml" />
     <Content Include="Views\Regioes\Create.cshtml" />
     <Content Include="Views\Regioes\Delete.cshtml" />
-    <Content Include="Views\Regioes\Details.cshtml" />
     <Content Include="Views\Regioes\Edit.cshtml" />
     <Content Include="Views\Regioes\Index.cshtml" />
+    <Content Include="Views\Acerto\Lancamento.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -643,6 +655,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201802201600519_FKRegioes.resx">
       <DependentUpon>201802201600519_FKRegioes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802211544531_es.resx">
+      <DependentUpon>201802211544531_es.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802231244151_AddRegiaoIdToEstabelecimentos.resx">
+      <DependentUpon>201802231244151_AddRegiaoIdToEstabelecimentos.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

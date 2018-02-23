@@ -22,6 +22,34 @@ namespace Caixa.Web.Controllers
             return View(db.Acerto.Include("Estabelecimento").Include("Maquina").ToList().OrderByDescending(x => x.Id));
         }
 
+        // GET: Lancamento
+        public ActionResult Lancamento()
+        {
+            var userName = User.Identity.GetUserName();
+
+            var regioesVM = new RegioesViewModel();
+            IList<Estabelecimentos> estabelecimentoList = new List<Estabelecimentos>();
+
+            var regioes = db.Regioes.Where(x => x.UserName == userName).ToList();
+
+            regioesVM.Regioes = regioes;
+
+            foreach (var item in regioes)
+            {
+                var estabelecimentos = db.Estabelecimento.Include("Regiao").Where(x => x.Regiao.Nome == item.Nome).ToList();
+
+                foreach (var est in estabelecimentos)
+                {
+                    estabelecimentoList.Add(est);
+                }
+            }
+
+            regioesVM.Estabelecimentos = estabelecimentoList;
+
+            return View(regioesVM);
+        }
+
+
         // GET: Acerto/Create
         public ActionResult Create(int? idEstabelecimento)
         {

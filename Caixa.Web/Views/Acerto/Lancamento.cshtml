@@ -1,0 +1,47 @@
+﻿@model Caixa.Web.Models.RegioesViewModel
+
+@{
+    ViewBag.Title = "Lançamento de Acerto";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<h1>Defina um estabelecimento para lançar o acerto</h1>
+<br />
+
+<table id="acertos" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName("Região")
+            </th>
+            <th>
+                @Html.DisplayName("Estabelecimento")
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Estabelecimentos)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Regiao.Nome)
+                </td>
+                <td>
+                    @Html.ActionLink(item.Nome, "Create", "Acerto", new { idEstabelecimento = item.Id }, null)
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+    @section scripts{
+        <script>
+            $(document).ready(function () {
+                $('#acertos').DataTable({
+                    "language": {
+                        "url": "https://cdn.datatables.net/plug-ins/1.10.12/i18n/Portuguese-Brasil.json"
+                    }
+                });
+            });
+        </script>
+    }

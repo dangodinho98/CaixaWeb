@@ -14,12 +14,10 @@ namespace Caixa.Web.Models
 
         [MaxLength(255)]
         [Required]
-        [Display(Name = "Região")]
-        public string Regiao { get; set; }
+        [Display(Name = "Nome Região")]
+        public string Nome { get; set; }
 
         [Display(Name = "Usuário")]
         public string UserName { get; set; }
-
-        public ICollection<Estabelecimentos> Estabelecimentos { get; set; }
     }
 }

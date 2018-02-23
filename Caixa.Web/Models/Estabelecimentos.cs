@@ -26,7 +26,11 @@ namespace Caixa.Web.Models
         public string Telefone { get; set; }
 
         [Display(Name = "Região")]
-        public string Regiao { get; set; }
+        [ForeignKey("Regiao")]
+        public int RegiaoId { get; set; }
+        [Display(Name = "Região")]
+        public Regioes Regiao { get; set; }
+
         public bool Ativo { get; set; }
 
         [Display(Name = "Observação")]
