@@ -36,7 +36,7 @@ namespace Caixa.Web.Controllers
 
             foreach (var item in regioes)
             {
-                var estabelecimentos = db.Estabelecimento.Include("Regiao").Where(x => x.Regiao.Nome == item.Nome).ToList();
+                var estabelecimentos = db.Estabelecimento.Include("Regiao").Include("Maquinas").Where(x => x.Regiao.Nome == item.Nome).ToList();
 
                 foreach (var est in estabelecimentos)
                 {

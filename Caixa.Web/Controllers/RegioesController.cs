@@ -44,7 +44,6 @@ namespace Caixa.Web.Controllers
 
             if (accountSecurity != null && accountSecurity.Level == 5)
             {
-                //var local = db.Estabelecimento.Where(x => x.Ativo == true).ToList();
                 var regiaoVM = new Regioes() { UserName = username };
 
                 return View(regiaoVM);
@@ -61,10 +60,6 @@ namespace Caixa.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                //Trata estabelecimentos
-                //var estabelecimentoDB = db.Estabelecimento.Find(regioes.IdEstabelecimento);
-                //regioes.Estabelecimentos = estabelecimentoDB;
-
                 db.Regioes.Add(regioes);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -122,6 +117,16 @@ namespace Caixa.Web.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Regioes regioes = db.Regioes.Find(id);
+            //var regioesDemais = db.Regioes.Where(x => x.Nome == regioes.Nome).ToList();
+
+            //if (regioesDemais != null && regioesDemais.Count != 0)
+            //{
+            //    foreach (var item in regioesDemais)
+            //    {
+            //        db.Regioes.Remove(item);
+            //    }
+            //}
+
             db.Regioes.Remove(regioes);
             db.SaveChanges();
             return RedirectToAction("Index");
