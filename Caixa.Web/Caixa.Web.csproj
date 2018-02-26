@@ -287,6 +287,10 @@
     <Compile Include="Migrations\201802231244151_AddRegiaoIdToEstabelecimentos.Designer.cs">
       <DependentUpon>201802231244151_AddRegiaoIdToEstabelecimentos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201802240422129_DIeDSMaquinas.cs" />
+    <Compile Include="Migrations\201802240422129_DIeDSMaquinas.Designer.cs">
+      <DependentUpon>201802240422129_DIeDSMaquinas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Acerto.cs" />
@@ -661,6 +665,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201802231244151_AddRegiaoIdToEstabelecimentos.resx">
       <DependentUpon>201802231244151_AddRegiaoIdToEstabelecimentos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802240422129_DIeDSMaquinas.resx">
+      <DependentUpon>201802240422129_DIeDSMaquinas.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

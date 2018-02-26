@@ -19,7 +19,7 @@ namespace Caixa.Web.Controllers
         // GET: Acerto
         public ActionResult Index()
         {
-            return View(db.Acerto.Include("Estabelecimento").Include("Maquina").ToList().OrderByDescending(x => x.Id));
+            return View(db.Acerto.Include("Estabelecimento").Include("Maquina").ToList().OrderByDescending(x => x.Id).ThenByDescending(x => x.Data));
         }
 
         // GET: Lancamento
@@ -55,19 +55,15 @@ namespace Caixa.Web.Controllers
         {
             var username = User.Identity.GetUserName();
             var accountSecurity = db.Security.FirstOrDefault(a => a.UserName == username);
-            var diAnterior = 10;
 
             if (accountSecurity != null && accountSecurity.Level == 5)
             {
                 var acertoVM = new AcertoViewModel();
 
-                acertoVM.Acerto = new Acerto() { Data = DateTime.Now.Date };
+                acertoVM.Acerto = new Acerto() { Data = DateTime.Now.Date, IdEstabelecimento = idEstabelecimento.GetValueOrDefault() };
                 acertoVM.Estabelecimentos = db.Estabelecimento.Where(x => x.Id == idEstabelecimento).ToList();
                 acertoVM.Maquinas = db.Maquina.Where(x => x.Ativo == true && x.IdEstabelecimento == idEstabelecimento).ToList();
                 acertoVM.Comissionados = db.Comissionado.Where(x => x.Bloqueado == false).ToList();
-
-                ViewBag.DIAnterior = diAnterior;
-
 
                 return View(acertoVM);
             }
@@ -86,6 +82,30 @@ namespace Caixa.Web.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    var maquina = db.Maquina.Find(acerto.IdMaquina);
+                    acerto.Maquina = maquina;
+
+                    #region Trata DI / DS
+                    if (acerto.Entrada > acerto.Maquina.DI)
+                    {
+                        acerto.Maquina.DI = acerto.Entrada;
+                    }
+                    else
+                    {
+                        //Retorna erro... ENTRADA NUNCA PODE SER MENOR QUE A ENTRADA ANTERIOR (PRESENTE NA MÁQUINA)
+                        TempData["Erro"] = "Cliente adicionado com sucesso";
+                    }
+
+                    if (acerto.Saida > acerto.Maquina.DS)
+                    {
+                        acerto.Maquina.DS = acerto.Saida;
+                    }
+                    else
+                    {
+                        //Retorna erro... SAIDA NUNCA PODE SER MENOR QUE A SAIDA ANTERIOR (PRESENTE NA MÁQUINA)
+                    } 
+                    #endregion
+
                     #region Calculos
                     var comissao = (acerto.Entrada * acerto.Comissao) / 100;
                     acerto.Subtotal = acerto.Entrada - (acerto.Despesa + acerto.Quebra + acerto.Saida);
