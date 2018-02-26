@@ -1,4 +1,5 @@
 ﻿using Caixa.Web.Models;
+using Caixa.Web.Report;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
@@ -103,7 +104,7 @@ namespace Caixa.Web.Controllers
                     else
                     {
                         //Retorna erro... SAIDA NUNCA PODE SER MENOR QUE A SAIDA ANTERIOR (PRESENTE NA MÁQUINA)
-                    } 
+                    }
                     #endregion
 
                     #region Calculos
@@ -228,5 +229,55 @@ namespace Caixa.Web.Controllers
             }
             base.Dispose(disposing);
         }
+
+        #region Relatórios
+
+        public FileResult BaixarPDF()
+        {
+            var rpt = getRelatorio();
+
+            return File(rpt.GetOutput().GetBuffer(), "application/pdf", "Documento.pdf");
+        }
+
+        private AcertoReportViewer getRelatorio()
+        {
+            var rpt = new AcertoReportViewer()
+            {
+                BasePath = Server.MapPath("/"),
+                PageTitle = "Relatório de Acerto",
+                ImprimirCabecalhoPadrao = true,
+                ImprimirRodapePadrao = true
+            };
+
+            return rpt;
+        }
+
+        public ActionResult Preview()
+        {
+            var rpt = getRelatorio();
+
+            return File(rpt.GetOutput().GetBuffer(), "application/pdf");
+        }
+
+        private ComprovanteAcertoReportViewer getRelatorioComprovante()
+        {
+            var rpt = new ComprovanteAcertoReportViewer() {
+                BasePath = Server.MapPath("/"),
+                PageTitle = "Relatório de Acerto",
+                ImprimirCabecalhoPadrao = true,
+                ImprimirRodapePadrao = true
+            };
+            return rpt;
+        }
+
+        public ActionResult PreviewComprovante()
+        {
+            var rpt = getRelatorioComprovante();
+
+            return File(rpt.GetOutput().GetBuffer(), "application/pdf");
+        }
+        #endregion
+
+
     }
 }
