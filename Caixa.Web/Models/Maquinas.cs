@@ -18,6 +18,12 @@ namespace Caixa.Web.Models
         [Index(IsUnique = true)]
         public int Lacre { get; set; }
 
+        [Display(Name = "DI (Entrada)")]
+        public float DI { get; set; }
+
+        [Display(Name = "DS (Saída)")]
+        public float DS { get; set; }
+
         [Display(Name = "Estabelecimento")]
         [ForeignKey("Estabelecimento")]
         public int IdEstabelecimento { get; set; }
