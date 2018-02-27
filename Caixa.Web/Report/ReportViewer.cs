@@ -163,7 +163,7 @@ namespace Caixa.Web.Report
                 table.SetWidths(sizes);
 
                 #region Coluna TNE
-                Image foot = Image.GetInstance(BasePath + @"\Content\tne_mascote.png");
+                Image foot = Image.GetInstance(BasePath + @"\Content\logo.png");
                 foot.ScalePercent(60);
 
                 PdfPCell cell = new PdfPCell(foot);
@@ -239,7 +239,7 @@ namespace Caixa.Web.Report
                 }
                 else
                 {
-                    foot = Image.GetInstance(BasePath + @"\Content\tne_mascote.png");
+                    foot = Image.GetInstance(BasePath + @"\Content\logo.png");
                 }
                 foot.ScalePercent(60);
 
