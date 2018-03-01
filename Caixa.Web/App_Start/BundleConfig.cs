@@ -12,6 +12,8 @@ namespace Caixa.Web
                          "~/Scripts/jquery-{version}.js",
                          "~/Scripts/bootstrap.js",
                          "~/Scripts/bootbox.js",
+                         "~/Scripts/toastr.js",
+                         "~/Scripts/typeahead.bundle.js",
                          "~/Scripts/datatables/jquery.datatables.js",
                          "~/Scripts/datatables/datatables.bootstrap.js",
                          "~/Scripts/respond.js"));
@@ -31,6 +33,8 @@ namespace Caixa.Web
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/datatables/css/datatables.bootstrap.css",
+                      "~/Content/toastr.css",
+                      "~/Content/typeahead.css",
                       "~/Content/site.css"));
         }
     }

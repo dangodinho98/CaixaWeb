@@ -13,5 +13,8 @@ namespace Caixa.Web.Models
 
         public IList<Estabelecimentos> Estabelecimentos { get; set; }
         public IList<Comissionado> Comissionados { get; set; }
+
+        public bool Success { get; set; }
+        public string Message { get; set; }
     }
 }

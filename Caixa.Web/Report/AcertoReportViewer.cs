@@ -34,14 +34,9 @@ namespace Caixa.Web.Report
             table.HeaderRows = 1;
             table.WidthPercentage = 100f;
 
-            table.DefaultCell.BorderWidth = 1;
-            table.DefaultCell.PaddingTop = 0;
-            table.WidthPercentage = 100f;
-
             table.DefaultCell.Border = PdfPCell.BOTTOM_BORDER;
             table.DefaultCell.BorderColor = preto;
             table.DefaultCell.BorderColorBottom = new BaseColor(255, 255, 255);
-            //table.DefaultCell.Padding = 10;
 
             table.AddCell(getNewCell("N° Acerto", titulo, Element.ALIGN_CENTER, 10, PdfPCell.BOTTOM_BORDER, preto, fundo));
             table.AddCell(getNewCell("Emissão", titulo, Element.ALIGN_CENTER, 10, PdfPCell.BOTTOM_BORDER, preto, fundo));
@@ -63,12 +58,10 @@ namespace Caixa.Web.Report
                 table.AddCell(getNewCell(string.Format("{0:0.00}", d.Saida), font, Element.ALIGN_CENTER, 5, PdfPCell.BOTTOM_BORDER));
             }
 
-            var  totalEntrada = acerto.Sum(x => x.Entrada);
+            var totalEntrada = acerto.Sum(x => x.Entrada);
             table.AddCell(getNewCell("Totais: ", titulo, Element.ALIGN_CENTER, 10, PdfPCell.BOTTOM_BORDER, preto, fundo));
             table.AddCell(getNewCell(string.Format("{0:0.00}", totalEntrada), font, Element.ALIGN_CENTER, 5, PdfPCell.BOTTOM_BORDER, preto, fundo));
             table.AddCell(getNewCell(string.Format("{0:0.00}", totalEntrada), font, Element.ALIGN_CENTER, 5, PdfPCell.BOTTOM_BORDER));
-
-
 
             doc.Add(table);
         }

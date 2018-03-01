@@ -54,6 +54,7 @@ namespace Caixa.Web.Controllers
         // GET: Acerto/Create
         public ActionResult Create(int? idEstabelecimento)
         {
+
             var username = User.Identity.GetUserName();
             var accountSecurity = db.Security.FirstOrDefault(a => a.UserName == username);
 
@@ -61,7 +62,10 @@ namespace Caixa.Web.Controllers
             {
                 var acertoVM = new AcertoViewModel();
 
-                acertoVM.Acerto = new Acerto() { Data = DateTime.Now.Date, IdEstabelecimento = idEstabelecimento.GetValueOrDefault() };
+                acertoVM.Acerto = new Acerto() {
+                    Data = DateTime.Now.Date,
+                    IdEstabelecimento = idEstabelecimento.GetValueOrDefault()};
+
                 acertoVM.Estabelecimentos = db.Estabelecimento.Where(x => x.Id == idEstabelecimento).ToList();
                 acertoVM.Maquinas = db.Maquina.Where(x => x.Ativo == true && x.IdEstabelecimento == idEstabelecimento).ToList();
                 acertoVM.Comissionados = db.Comissionado.Where(x => x.Bloqueado == false).ToList();
@@ -79,6 +83,14 @@ namespace Caixa.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Acerto acerto)
         {
+            #region View Model
+            var acertoVM = new AcertoViewModel();
+            acertoVM.Acerto = acerto;
+            acertoVM.Estabelecimentos = db.Estabelecimento.Where(x => x.Id == acerto.IdEstabelecimento).ToList();
+            acertoVM.Maquinas = db.Maquina.Where(x => x.Id == acerto.IdMaquina).ToList();
+            acertoVM.Comissionados = db.Comissionado.Where(x => x.Bloqueado == false).ToList();
+            #endregion
+
             try
             {
                 if (ModelState.IsValid)
@@ -93,8 +105,8 @@ namespace Caixa.Web.Controllers
                     }
                     else
                     {
-                        //Retorna erro... ENTRADA NUNCA PODE SER MENOR QUE A ENTRADA ANTERIOR (PRESENTE NA MÁQUINA)
-                        TempData["Erro"] = "Cliente adicionado com sucesso";
+                        TempData["error"] = "DI (Entrada) não pode ser menor que a DI anterior.";
+                        return View("Create", acertoVM);
                     }
 
                     if (acerto.Saida > acerto.Maquina.DS)
@@ -103,7 +115,8 @@ namespace Caixa.Web.Controllers
                     }
                     else
                     {
-                        //Retorna erro... SAIDA NUNCA PODE SER MENOR QUE A SAIDA ANTERIOR (PRESENTE NA MÁQUINA)
+                        TempData["error"] = "DS (Saída) não pode ser menor que a DS anterior.";
+                        return View("Create", acertoVM);
                     }
                     #endregion
 
@@ -114,24 +127,30 @@ namespace Caixa.Web.Controllers
                     if (comissao == null)
                         comissao = 0;
 
-                    acerto.Total = acerto.Entrada - (acerto.Despesa + acerto.Quebra + acerto.Saida + comissao);
+                    acerto.Total = acerto.Entrada - (acerto.Despesa.GetValueOrDefault(0) + acerto.Quebra.GetValueOrDefault(0) + acerto.Saida + comissao.GetValueOrDefault(0));
                     #endregion
 
                     if (acerto.Total.HasValue)
                     {
                         db.Acerto.Add(acerto);
                         db.SaveChanges();
+                        TempData["success"] = "Acerto lançado com sucesso!";
+                    }
+                    else
+                    {
+                        TempData["error"] = "Verifique as informações e tente novamente.";
                     }
 
-                    return RedirectToAction("Index");
+                    return View("Create", acertoVM);
+                    //return RedirectToAction("Index");
                 }
             }
             catch (DataException /* dex */)
             {
                 ModelState.AddModelError("", "Não foi possível salvar as alterações. Tente de novo, e se o problema persistir consulte o administrador do sistema.");
             }
-            return View(acerto);
 
+            return View(acertoVM);
         }
 
         // GET: Acerto/Details/5
