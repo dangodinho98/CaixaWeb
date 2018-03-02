@@ -105,7 +105,7 @@ namespace Caixa.Web.Controllers
                     }
                     else
                     {
-                        TempData["error"] = "DI (Entrada) não pode ser menor que a DI anterior.";
+                        TempData["error"] = String.Format("DI (Entrada) não pode ser menor que {0}.", acerto.Maquina.DI);
                         return View("Create", acertoVM);
                     }
 
@@ -115,7 +115,7 @@ namespace Caixa.Web.Controllers
                     }
                     else
                     {
-                        TempData["error"] = "DS (Saída) não pode ser menor que a DS anterior.";
+                        TempData["error"] = String.Format("DS (Saída) não pode ser menor que {0}.", acerto.Maquina.DS);
                         return View("Create", acertoVM);
                     }
                     #endregion
