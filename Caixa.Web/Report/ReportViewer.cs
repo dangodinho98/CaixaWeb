@@ -14,6 +14,7 @@ namespace Caixa.Web.Report
         PdfWriter writer;
         MemoryStream output;
 
+        public string Author { get; set; }
         public string PageTitle { get; set; }
         public string PageSubTitle { get; set; }
         public string PageSubLogo { get; set; }
@@ -80,7 +81,7 @@ namespace Caixa.Web.Report
             output = new MemoryStream();
             writer = PdfWriter.GetInstance(doc, output);
 
-            doc.AddAuthor("");
+            doc.AddAuthor(Author);
             doc.AddTitle(PageTitle);
             doc.AddSubject(PageTitle);
 
@@ -181,7 +182,7 @@ namespace Caixa.Web.Report
                 cell = new PdfPCell(new Phrase("Relatório gerado pelo sistema.", font));
                 cell.Border = 0;
                 micros.AddCell(cell);
-                //cell = new PdfPCell(new Phrase("www.tretaneverends.com.br", font));
+                //cell = new PdfPCell(new Phrase(Author, font));
                 //cell.Border = 0;
                 //micros.AddCell(cell);
 

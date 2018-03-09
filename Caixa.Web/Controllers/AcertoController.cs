@@ -278,20 +278,29 @@ namespace Caixa.Web.Controllers
             return File(rpt.GetOutput().GetBuffer(), "application/pdf");
         }
 
-        private ComprovanteAcertoReportViewer getRelatorioComprovante()
+        private ComprovanteAcertoReportViewer getRelatorioComprovante(int IdAcerto)
         {
+            var acerto = db.Acerto.Find(IdAcerto);
+            var estabelecimento = db.Estabelecimento.Find(acerto.IdEstabelecimento);
+            var maquina = db.Maquina.Find(acerto.IdMaquina);
+
             var rpt = new ComprovanteAcertoReportViewer() {
+                Author = User.Identity.GetUserName(),
+                acerto = acerto,
+                estabelecimento = estabelecimento,
+                maquina = maquina,
                 BasePath = Server.MapPath("/"),
-                PageTitle = "Relatório de Acerto",
+                PageTitle = estabelecimento.Nome,
+                PageSubTitle = "Acerto n°: " + acerto.Id,
                 ImprimirCabecalhoPadrao = true,
                 ImprimirRodapePadrao = true
             };
             return rpt;
         }
 
-        public ActionResult PreviewComprovante()
+        public ActionResult PreviewComprovante(int id)
         {
-            var rpt = getRelatorioComprovante();
+            var rpt = getRelatorioComprovante(id);
 
             return File(rpt.GetOutput().GetBuffer(), "application/pdf");
         }

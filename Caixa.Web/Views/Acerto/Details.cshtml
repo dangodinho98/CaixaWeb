@@ -9,7 +9,7 @@
 <h2>Detalhes</h2>
 
 <p>
-    @Html.ActionLink("Gerar Relatório Acerto", "PreviewComprovante", "Acerto", null, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Gerar Relatório Acerto", "PreviewComprovante","Acerto", routeValues: new { id = Model.Acerto.Id }, htmlAttributes: new { @class = "btn btn-primary"})
 </p>
 
 <div>
