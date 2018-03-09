@@ -458,6 +458,10 @@
     <Content Include="Content\DataTables\css\common.scss" />
     <Content Include="Content\toastr.scss" />
     <Content Include="Content\toastr.less" />
+    <None Include="Properties\PublishProfiles\caixamvc - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\caixamvc - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\caixamvcweb - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\caixamvcweb - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\Godinho.pubxml" />
     <None Include="Scripts\jquery-1.10.2-vsdoc.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.js" />
@@ -621,7 +625,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
-    <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>

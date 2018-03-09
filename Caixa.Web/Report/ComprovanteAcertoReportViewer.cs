@@ -28,9 +28,12 @@ namespace Caixa.Web.Report
             BaseColor fundo = new BaseColor(200, 200, 200);
             Font font = FontFactory.GetFont("Verdana", 8, Font.NORMAL, preto);
             Font titulo = FontFactory.GetFont("Verdana", 8, Font.BOLD, preto);
-            var acerto = db.Acerto.Include("Estabelecimento").Include("Maquina").FirstOrDefault();
 
+            var acerto = db.Acerto.Include("Estabelecimento").Include("Maquina").FirstOrDefault();
             doc.AddTitle(acerto.Estabelecimento.Nome + " - " + DateTime.Now.ToString("dd-mm-yyyy hh:mm:ss"));
+
+            base.PageTitle = acerto.Estabelecimento.Nome;
+            base.PageSubTitle = "Acerto n°: " + acerto.Id;           
 
             float[] colsW = { 15, 15 , 15};
             table.SetWidths(colsW);
@@ -42,25 +45,50 @@ namespace Caixa.Web.Report
             table.DefaultCell.BorderColorBottom = new BaseColor(255, 255, 255);
             table.DefaultCell.Padding = 10;
 
-            table.AddCell(getNewCell("Estabelecimento", titulo, Element.ALIGN_LEFT, 10, PdfPCell.BOX, preto, fundo));
-            table.AddCell(getNewCell("Emissão", titulo, Element.ALIGN_LEFT, 10, PdfPCell.BOX, preto, fundo));
-            table.AddCell(getNewCell("Código Máquina", titulo, Element.ALIGN_LEFT, 10, PdfPCell.BOX, preto, fundo));
+            table.AddCell(getNewCell("Entrada Anterior", titulo, Element.ALIGN_CENTER, 10, PdfPCell.BOX, preto, fundo));
+            table.AddCell(getNewCell("Saída Anterior", titulo, Element.ALIGN_CENTER, 10, PdfPCell.BOX, preto, fundo));
+            table.AddCell(getNewCell("Lacre Anterior", titulo, Element.ALIGN_CENTER, 10, PdfPCell.BOX, preto, fundo));
 
-            table.AddCell(getNewCell(acerto.Estabelecimento.Nome, font, Element.ALIGN_CENTER, 5, PdfPCell.BOX));
-            table.AddCell(getNewCell(acerto.Data.ToString("dd/MM/yyyy"), font, Element.ALIGN_CENTER, 5, PdfPCell.BOX));
-            table.AddCell(getNewCell(acerto.Maquina.Codigo.ToString(), font, Element.ALIGN_CENTER, 5, PdfPCell.BOX));
-
-            table.AddCell(getNewCell("Código Máquina", titulo, Element.ALIGN_LEFT, 10, PdfPCell.BOX, preto, fundo));
-            table.AddCell(getNewCell("DI (Entrada)", titulo, Element.ALIGN_LEFT, 10, PdfPCell.BOX, preto, fundo));
-            table.AddCell(getNewCell("DS (Saída)", titulo, Element.ALIGN_LEFT, 10, PdfPCell.BOX, preto, fundo));
-
-            table.AddCell(getNewCell(acerto.Maquina.Codigo.ToString(), font, Element.ALIGN_CENTER, 5, PdfPCell.BOX));
             table.AddCell(getNewCell(string.Format("{0:0.00}", acerto.Maquina.DI), font, Element.ALIGN_CENTER, 5, PdfPCell.BOX));
             table.AddCell(getNewCell(string.Format("{0:0.00}", acerto.Maquina.DS), font, Element.ALIGN_CENTER, 5, PdfPCell.BOX));
-            #endregion
+            table.AddCell(getNewCell("", font, Element.ALIGN_CENTER, 5, PdfPCell.BOX));
 
-            //table.AddCell(getNewCell(acerto.Estabelecimento.Nome, font, Element.ALIGN_LEFT, 5, PdfPCell.BOTTOM_BORDER));
-                //table.AddCell(getNewCell(acerto.Data.ToString("dd/MM/yyyy"), font, Element.ALIGN_LEFT, 5, PdfPCell.BOTTOM_BORDER));
+            table.AddCell(getNewCell("Entrada Atual", titulo, Element.ALIGN_CENTER, 10, PdfPCell.BOX, preto, fundo));
+            table.AddCell(getNewCell("Saída Atual", titulo, Element.ALIGN_CENTER, 10, PdfPCell.BOX, preto, fundo));
+            table.AddCell(getNewCell("Lacre Atual", titulo, Element.ALIGN_CENTER, 10, PdfPCell.BOX, preto, fundo));
+
+            table.AddCell(getNewCell(string.Format("{0:0.00}", acerto.Entrada), font, Element.ALIGN_CENTER, 5, PdfPCell.BOX));
+            table.AddCell(getNewCell(string.Format("{0:0.00}", acerto.Saida), font, Element.ALIGN_CENTER, 5, PdfPCell.BOX));
+            table.AddCell(getNewCell("", font, Element.ALIGN_CENTER, 5, PdfPCell.BOX));
+
+            table.AddCell(getNewCell("Total Entrada", titulo, Element.ALIGN_CENTER, 10, PdfPCell.BOX, preto, fundo));
+            table.AddCell(getNewCell("Bonificação Pago", titulo, Element.ALIGN_CENTER, 10, PdfPCell.BOX, preto, fundo));
+            table.AddCell(getNewCell("LB", titulo, Element.ALIGN_CENTER, 10, PdfPCell.BOX, preto, fundo));
+
+            table.AddCell(getNewCell(string.Format("{0:0.00}", acerto.Subtotal), font, Element.ALIGN_CENTER, 5, PdfPCell.BOX));
+            table.AddCell(getNewCell("", font, Element.ALIGN_CENTER, 5, PdfPCell.BOX));
+            table.AddCell(getNewCell("", font, Element.ALIGN_CENTER, 5, PdfPCell.BOX));
+
+            table.AddCell(getNewCell("Quebra", titulo, Element.ALIGN_CENTER, 10, PdfPCell.BOX, preto, fundo));
+            table.AddCell(getNewCell("Comssão Loja", titulo, Element.ALIGN_CENTER, 10, PdfPCell.BOX, preto, fundo));
+            table.AddCell(getNewCell("Colar Lacre", titulo, Element.ALIGN_CENTER, 10, PdfPCell.BOX, preto, fundo));
+
+            table.AddCell(getNewCell(string.Format("{0:0.00}", acerto.Quebra), font, Element.ALIGN_CENTER, 5, PdfPCell.BOX));
+            table.AddCell(getNewCell(string.Format("{0:0.00}", acerto.Comissao), font, Element.ALIGN_CENTER, 5, PdfPCell.BOX));
+            table.AddCell(getNewCell("", font, Element.ALIGN_CENTER, 5, PdfPCell.BOX));
+
+            table.AddCell(getNewCell("Líquido", titulo, Element.ALIGN_CENTER, 10, PdfPCell.BOX, preto, fundo));
+            table.AddCell(getNewCell("", titulo, Element.ALIGN_CENTER, 10, PdfPCell.NO_BORDER));
+            table.AddCell(getNewCell("PJ", titulo, Element.ALIGN_CENTER, 10, PdfPCell.BOX, preto, fundo));
+
+            table.AddCell(getNewCell(string.Format("{0:0.00}", acerto.Total), font, Element.ALIGN_CENTER, 5, PdfPCell.BOX));
+            table.AddCell(getNewCell("", font, Element.ALIGN_CENTER, 5, PdfPCell.NO_BORDER));
+            table.AddCell(getNewCell("", font, Element.ALIGN_CENTER, 5, PdfPCell.BOX));
+
+            table.AddCell(getNewCell("OBS:", titulo, Element.ALIGN_CENTER, 10, PdfPCell.PARAGRAPH));
+            table.AddCell(getNewCell("", font, Element.ALIGN_CENTER, 5, PdfPCell.PARAGRAPH));
+
+            #endregion
 
             doc.Add(table);
         }
