@@ -144,5 +144,10 @@ namespace Caixa.Web.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public ActionResult RelatorioMaquinas()
+        {
+            return View();
+        }
     }
 }

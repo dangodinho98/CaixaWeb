@@ -18,7 +18,7 @@ namespace Caixa.Web.Controllers
         // GET: Estabelecimentos
         public ActionResult Index()
         {
-            var estabelecimento = db.Estabelecimento.Include("Regiao").ToList().OrderBy(a=> a.Nome);
+            var estabelecimento = db.Estabelecimento.Include("Regiao").ToList().OrderBy(a => a.Nome);
             return View(estabelecimento);
         }
 
@@ -148,6 +148,9 @@ namespace Caixa.Web.Controllers
             return View(estabelecimentos);
         }
 
-
+        public ActionResult RelatorioAcertoEstabelecimentos()
+        {
+            return View();
+        }
     }
 }

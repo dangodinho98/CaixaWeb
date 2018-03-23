@@ -616,6 +616,8 @@
     <Content Include="Views\Regioes\Edit.cshtml" />
     <Content Include="Views\Regioes\Index.cshtml" />
     <Content Include="Views\Acerto\Lancamento.cshtml" />
+    <Content Include="Views\Estabelecimentos\RelatorioAcertoEstabelecimentos.cshtml" />
+    <Content Include="Views\Maquinas\RelatorioMaquinas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
